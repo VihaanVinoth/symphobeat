@@ -15,9 +15,8 @@ body {
   margin: 25px;
   background: radial-gradient(circle at top, #5a1a1a, #2b0f0f 70%);
   min-height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   min-height: 100%;
-  overflow-x: hidden;
 }
 
 h1 {
