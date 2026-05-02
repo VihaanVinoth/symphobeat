@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: "Tiro Bangla", "Times New Roman", serif;
+  text-align: center;
+  color: #f5e6c8;
+}
+
+body {
+  margin: 25px;
+  background: radial-gradient(circle at top, #5a1a1a, #2b0f0f 70%);
+  min-height: 100%;
+  overflow-x: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 3px;
+  color: #e6c76b;
+  text-shadow:
+    0 1px 0 #000,
+    0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+#wave {
+  font-family: "Wavefont", monospace;
+  font-weight: 600;
+  font-size: 5rem;
+  position: absolute;
+  left: -25%;
+  opacity: 0.12;
+  background: linear-gradient(#e6c76b, #8c6b1f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: none;
+}
+
+#spacebar {
+  display: inline-block;
+  padding: 22px 140px;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #7a1f1f 0%, #5

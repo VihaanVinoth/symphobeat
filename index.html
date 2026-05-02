@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symphobeat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Wavefont:wght,ROND,YELA@4..1000,100,-100&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <audio id="bass" src="Bass_Audio.mp3"></audio>
+    <h1>symphobeat</h1>
+    <span id="wave">čćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢ</span>
+    <br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="#" id="spacebar">&nbsp;</a>
+    <br><br><br><br><br>
+    <p>Press the [spacebar] to play the sound.</p>
+    <script type="text/javascript">
+        const bass = document.getElementById("bass");
+        const spacebar = document.getElementById("spacebar");
+
+        document.addEventListener("keydown", function(event) {
+            if (event.code == "Space") {
+                bass.currentTime = 0;
+                bass.play();
+
+                spacebar.classList.add("active");
+            }
+        }); 
+
+        document.addEventListener("keyup", function(event) {
+            if (event.code == "Space") {
+                spacebar.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+</html>
