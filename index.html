@@ -21,63 +21,77 @@
 </head>
 
 <body>
-    <audio id="bass" src="Bass_Audio.mp3"></audio>
     <h1>symphobeat</h1>
     <span
         id="wave">čćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢ</span>
     <br>
     <br><br><br><br><br><br><br><br><br><br><br><br>
-    <a href="#" id="spacebar">&nbsp;</a>
+    <button id="spacebar">TĀLA</button>
     <br><br><br><br><br>
     <p>Press the [spacebar] to play the sound.</p>
     <script type="text/javascript">
-        const bass = document.getElementById("bass");
         const spacebar = document.getElementById("spacebar");
 
         let audioContext;
         let buffer;
+        let gainNode;
 
         async function initAudio() {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const response = await fetch("Bass_Audio.mp3");
+            if (audioContext) return;
+            audioContext = new AudioContext({
+                latencyHint: "interactive"
+            });
+
+            gainNode = audioContext.createGain();
+            gainNode.connect(audioContext.destination);
+
+            const response = await fetch("Bass_Audio_optimized.wav");
             const arrayBuffer = await response.arrayBuffer();
             buffer = await audioContext.decodeAudioData(arrayBuffer);
         }
 
-        function play() {
-            const source = audioContext.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioContext.destination);
-            source.start(0);
+        async function ensureRunning() {
+            if (audioContext && audioContext.state !== "running") {
+                await audioContext.resume();
+            }
         }
 
-        document.addEventListener("keydown", async (e) => {
-            if (event.code == "Space") {
-                event.preventDefault();
-                if (!audioContext) {
-                    await initAudio();
-                }
+        function play() {
+            if (!buffer) return;
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(gainNode);
+            source.start(audioContext.currentTime);
+        }
 
+        window.addEventListener("load", initAudio);
+
+        document.addEventListener("pointerdown", async () => {
+            await initAudio();
+            await ensureRunning();
+        }, { once: true });
+
+        document.addEventListener("keydown", async (e) => {
+            if (e.code == "Space") {
+                e.preventDefault();
+                await ensureRunning();
                 play();
                 spacebar.classList.add("active");
             }
         });
 
         document.addEventListener("keyup", async (e) => {
-            if (event.code == "Space") {
+            if (e.code == "Space") {
                 spacebar.classList.remove("active");
             }
         });
 
         document.addEventListener("touchstart", async (e) => {
-            event.preventDefault();
-            if (!audioContext) {
-                await initAudio();
-            }
-
+            e.preventDefault();
+            await ensureRunning();
             play();
             spacebar.classList.add("active");
-        });
+        }, { passive: false });
 
         document.addEventListener("touchend", async (e) => {
             spacebar.classList.remove("active");
