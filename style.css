@@ -47,45 +47,4 @@ h1 {
   display: inline-block;
   padding: 22px 140px;
   border-radius: 10px;
-  background: linear-gradient(to bottom, #7a1f1f 0%, #5a1414 45%, #3a0c0c 100%);
-  border: 0.5px solid #c9a33b43;
-  color: #f5e6c8;
-  font-weight: 700;
-  letter-spacing: 3px;
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 4px 0 #2a0707,
-    0 10px 20px rgba(0, 0, 0, 0.55),
-    inset 0 0.5px 0 rgba(255, 255, 255, 0.25),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.45);
-  cursor: pointer;
-  transition: all 0.08s ease;
-  text-decoration: none;
-  outline: none;
-}
-
-#spacebar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.055),
-    rgba(255, 255, 255, 0.02)
-  );
-  border-radius: 10px 10px 0 0;
-  pointer-events: none;
-}
-
-#spacebar.active {
-  transform: translateY(3px);
-  background: linear-gradient(to bottom, #5a1414, #2f0707);
-  box-shadow:
-    0 1px 0 #1a0404,
-    0 4px 10px rgba(0, 0, 0, 0.6),
-    inset 0 3px 8px rgba(0, 0, 0, 0.5);
-}
+  background: linear-gradient(to bottom, #7a1f1f 0%, #5
