@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,23 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Wavefont:wght,ROND,YELA@4..1000,100,-100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Wavefont:wght,ROND,YELA@4..1000,100,-100&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <audio id="bass" src="Bass_Audio.mp3"></audio>
     <h1>symphobeat</h1>
-    <span id="wave">čćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢ</span>
+    <span
+        id="wave">čćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢčćŜĘķŌŎļĺļġđĦŊōōĤķňŅĦĽĜėċĥĭİŐĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢĬĝęŉŉĿħĲŁŠŀğĭōĦŚĦĠŢ</span>
     <br>
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <a href="#" id="spacebar">&nbsp;</a>
@@ -29,30 +34,55 @@
         const bass = document.getElementById("bass");
         const spacebar = document.getElementById("spacebar");
 
-        document.addEventListener("keydown", function(event) {
-            if (event.code == "Space") {
-                bass.currentTime = 0;
-                bass.play();
+        let audioContext;
+        let buffer;
 
+        async function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const response = await fetch("Bass_Audio.mp3");
+            const arrayBuffer = await response.arrayBuffer();
+            buffer = await audioContext.decodeAudioData(arrayBuffer);
+        }
+
+        function play() {
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            source.start(0);
+        }
+
+        document.addEventListener("keydown", async (e) => {
+            if (event.code == "Space") {
+                event.preventDefault();
+                if (!audioContext) {
+                    await initAudio();
+                }
+
+                play();
                 spacebar.classList.add("active");
             }
-        }); 
+        });
 
-        document.addEventListener("keyup", function(event) {
+        document.addEventListener("keyup", async (e) => {
             if (event.code == "Space") {
                 spacebar.classList.remove("active");
             }
         });
 
-        document.addEventListener("touchstart", function(event) {
-            bass.currentTime = 0;
-            bass.play();
-            spacebar.classList.add("active");
-        }); 
+        document.addEventListener("touchstart", async (e) => {
+            event.preventDefault();
+            if (!audioContext) {
+                await initAudio();
+            }
 
-        document.addEventListener("touchend", function(event) {
+            play();
+            spacebar.classList.add("active");
+        });
+
+        document.addEventListener("touchend", async (e) => {
             spacebar.classList.remove("active");
         });
     </script>
 </body>
+
 </html>
